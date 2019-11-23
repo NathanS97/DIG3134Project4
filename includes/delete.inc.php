@@ -4,7 +4,7 @@
     if (isset($_POST['commentDelete'])) {
       $commentID = $_POST['cid'];
 
-      $sql = "DELETE FROM comments WHERE cid='$cid'";
+      $sql = "DELETE FROM comments WHERE comment='$commentID'";
       $result = $conn->query($sql);
       header("location: index.php");
     }
