@@ -1,0 +1,204 @@
+body {
+  height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: "Roboto";
+  margin: 0;
+  padding: 0;
+
+}
+
+.container {
+  display: grid;
+  width: 100vw;
+  height: 100%;
+  background-color: rgba(250, 250, 250, 1);
+  z-index: 1;
+}
+
+.container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80vh;
+  background: linear-gradient(45deg, #E7D9B0, #056994);
+  -webkit-clip-path: polygon(0 67%, 100% 39%, 100% 100%, 0% 100%);
+  clip-path: polygon(0 67%, 100% 39%, 100% 100%, 0% 100%);
+}
+
+h1, h2 {
+  margin-top: 0;
+}
+
+.survey_pg_title {
+  text-align: center;
+  margin: 1em 0;
+  font-weight: 500;
+}
+
+.survey_title {
+  font-weight: 300;
+  font-size: 1.2rem;
+  margin-bottom: 1.2em;
+}
+
+form {
+  position: relative;
+  max-width: 80%;
+  min-height: 80vh;
+  max-height: 90vh;
+  margin: 7em auto 3em;
+  overflow: scroll;
+  z-index: 20;
+  background: #fff;
+  padding: 0 1.5em;
+  box-shadow: 5px 5px 20px 20px rgba(0, 0, 0, 0.1);
+}
+
+.survey_question {
+  padding: 1em 0;
+}
+
+input[type="text"] {
+  display: block;
+  border: 0;
+  border-bottom: 2px solid #ccc;
+  padding: 10px 50px 10px 10px;
+  margin: 1.2em 0 1em;
+  width: calc(100% - 2em);
+  outline: none;
+  box-sizing: border-box;
+  font-size: 1.1rem
+}
+
+input[type="text"]:focus {
+  border-bottom: 2px solid #056994;
+}
+
+/***** button Radio *****/
+
+.op_container {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  padding-left: 1.5em;
+  margin-bottom: .7em;
+  font-size: 1.2rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.op_container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.op_container:hover input ~ .checkmark {
+  background: #eee;
+}
+
+.op_container input:checked ~ .checkmark {
+  background-color: #eee;
+}
+
+.checkmark::after {
+  content: '';
+  position: absolute;
+  opacity: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #1EAFAA;
+  transition: opacity 200ms ease-in-out;
+}
+
+.op_container input:checked ~ .checkmark::after {
+  opacity: 1;
+}
+
+/***** textarea *****/
+
+.text_box {
+  display: block;
+  width: calc(100% - 2em);
+  height: 30px;
+  border: 0;
+  border-bottom: 2px solid #eee;
+  font-size: 1.1rem;
+  resize: none;
+  font-weight: 300;
+  outline: none;
+  line-height: 1.4;
+}
+.text_box:focus {
+  height: 120px;
+}
+
+/***** textarea *****/
+
+.select_css {
+  display: block;
+  font-size: 16px;
+  color: #444;
+  line-height: 1.5;
+  padding: 0.6em 1.4em 0.5em 0.8em;
+  width: calc(100% - 2em);
+  max-width: 100%;
+  box-sizing: border-box;
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  border-radius: .5em;
+  appearance: none;
+}
+
+/***** button *****/
+button {
+  display: block;
+  margin: 1em auto;
+  border-radius: 0;
+  font-size: 1.1rem;
+  padding: 1.2em 5.5em;
+  border: 0;
+  background: #1EAFAA;
+  font-weight: bold;
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+  transform: scale(1, 1);
+  transition: transform 150ms ease-in;
+}
+
+button:hover::after {
+  transform: scale(0, 0);
+}

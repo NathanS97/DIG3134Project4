@@ -1,0 +1,176 @@
+body {
+  height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: "Roboto";
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: grid;
+  width: 100vw;
+  height: 100%;
+  grid-template-rows: 40% 60%;
+}
+
+.error_output {
+  font-size: 0.8rem;
+  color: red;
+}
+
+/*****  Hero Section *****/
+.hero-section {
+  background-image: url("../img/sign_up.jpeg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.hero-container {
+  position: absolute;
+  top: 30%;
+  left: 5%;
+  width: 80%;
+  color: #fff;
+}
+
+.hero-title {
+  font-weight: 400;
+  font-size: 2.2rem;
+  margin-top: 0;
+}
+
+.hero-text {
+  font-size: 1.2rem;
+}
+
+/*****  Sign Up Section *****/
+.sidebar {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20vh;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 14%, 0 38%);
+  clip-path: polygon(0 0, 100% 0, 100% 14%, 0 38%);
+  background: rgba(0, 0, 0, 0.1);
+  z-index: -1;
+}
+
+.sidebar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20vh;
+  -webkit-clip-path: polygon(0 86%, 100% 62%, 100% 100%, 0 100%);
+  clip-path: polygon(0 86%, 100% 62%, 100% 100%, 0 100%);
+  background: rgba(0, 0, 0, 0.1);
+  z-index: -1;
+}
+
+.sign-up-form {
+  width: calc(80% - 2em);
+  height: 65%;
+  padding: 0 2em 2em 1em;
+}
+
+.sign-up-header {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 300;
+  position: relative;
+  margin-top: 0;
+}
+
+.sign-up-header::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 80px;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.sign-up-container {
+  width: 100%;
+  height: 70%;
+  padding: 1em;
+}
+
+.sign-up-label {
+  display: block;
+  margin-bottom: 2em;
+  position: relative;
+  padding: 0.5em;
+}
+
+.sign-up-title {
+  display: block;
+  padding-bottom: 1em;
+  position: absolute;
+  top: 10px;
+  transition: transform 200ms ease-in;
+}
+
+.sign-up-input {
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  outline: none;
+  font-size: 1.2rem;
+}
+
+.sign-up-input:focus {
+  border-color: #1EAFAA;
+}
+
+.sign-up-input:focus + .sign-up-title{
+  transform: translateY(-25px);
+  color: #1EAFAA;
+}
+
+.moveUp {
+  display: block;
+  padding-bottom: 1em;
+  position: absolute;
+  top: -15px;
+}
+
+.sign-up-input:focus + .moveUp {
+  display: block;
+  padding-bottom: 1em;
+  position: absolute;
+  top: -15px;
+  color: #1EAFAA;
+}
+
+.btn {
+  display: block;
+  border: none;
+  background-color: rgba(30,175,170, .8);
+  font-size: 1.1rem;
+  margin: 0 auto;
+  padding: 1em 2em;
+  color: white;
+  box-shadow: 0 5px 20px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: rgba(30,175,170, 1);
+}

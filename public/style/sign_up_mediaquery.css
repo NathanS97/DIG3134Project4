@@ -1,0 +1,67 @@
+@media only screen and (min-width: 768px) {
+  html {
+    font-size: 18px;
+  }
+
+  .sign-up-container {
+    width: 90%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  body {
+    width: 100%;
+    height: 100vh;
+  }
+
+  .container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 65% auto;
+  }
+
+  .hero-section {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .sidebar {
+    height: 100vh;
+    background: black;
+  }
+
+  .sign-up-form {
+    padding-top: 1em;
+  }
+
+  .sign-up-container {
+    padding-top: 1em;
+    height: 60%;
+  }
+
+  .sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 47vh;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 14%, 0 38%);
+    clip-path: polygon(0 0, 100% 0, 100% 14%, 0 38%);
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+
+  .sidebar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 47vh;
+    -webkit-clip-path: polygon(0 86%, 100% 62%, 100% 100%, 0 100%);
+    clip-path: polygon(0 86%, 100% 62%, 100% 100%, 0 100%);
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+}
