@@ -29,7 +29,7 @@
     if (!array_filter($errors)) {
       // echo $username . " " . $email;
       $conn = connectDB();
-      $sql = "SELECT id FROM user WHERE userName = ? AND email = ?";
+      $sql = "SELECT username FROM account WHERE username = ? AND email = ?";
       if($stmt = mysqli_prepare($conn, $sql)) {
         mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_email);
         $param_username = $username;
@@ -41,7 +41,7 @@
             $errors['username'] = "This username is already taken.";
             $errors['email'] = "This email is already taken.";
           } else {
-            $sql = "INSERT INTO user (userName, email, password) VALUES (?, ?, ?)";
+            $sql = "INSERT INTO account (username, email, password) VALUES (?, ?, ?)";
             if ($stmt = mysqli_prepare($conn, $sql)) {
               mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_email, $param_password);
               $param_username = $username;

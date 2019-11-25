@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 25, 2019 at 05:31 PM
+-- Generation Time: Nov 23, 2019 at 04:24 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.1.32
 
@@ -41,8 +41,7 @@ CREATE TABLE `account` (
 --
 
 CREATE TABLE `comments` (
-  `id` int(200) NOT NULL,
-  `username` varchar(255) NOT NULL,
+  `username` varchar(25) NOT NULL,
   `comment` text NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -74,7 +73,7 @@ ALTER TABLE `account`
 -- Indexes for table `comments`
 --
 ALTER TABLE `comments`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`username`);
 
 --
 -- Indexes for table `reviews`

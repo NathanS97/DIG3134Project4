@@ -29,7 +29,7 @@
 
     if (!array_filter($errors)) {
       $conn = connectDB();
-      $sql = "SELECT username password FROM account WHERE username = ?";
+      $sql = "SELECT username, password FROM account WHERE username = ?";
       if ($stmt = mysqli_prepare($conn, $sql)) {
         mysqli_stmt_bind_param($stmt, "s", $param_username);
         $param_username = $username;
