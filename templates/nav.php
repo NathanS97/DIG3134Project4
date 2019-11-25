@@ -4,7 +4,7 @@
     <a href="index.php" class="logo">VacaYelp</a>
     <nav>
       <ul>
-        <li><a href="#" class="link">Write a review</a> </li>
+        <li><a href="reviews.php" class="link">Write a review</a> </li>
         <li><a href="#" class="link">More</a></li>
       </ul>
     </nav>
