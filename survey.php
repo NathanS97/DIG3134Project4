@@ -1,65 +1,74 @@
 <?php
+  // turn into page to populate reviews table, use content Brooke created - NS
   session_start();
-  $destination = $recommand = $reason = $travel_agent = $cost = $next_trip = $phone_number = $email = "";
 
-  $errors = ["destination" => "", "reason" => "", "phone" => "", "email" => ""];
-  $options = ["recommand", "travel_agent", "cost", "next_trip"];
-  $optErr = ["recommand" =>"", "travel_agent" => "", "cost" => "", "next_trip" => ""];
+  $errors = ["username" => "", "date" => "", "review" => "", "image" => ""];
   if (isset($_POST['submit'])) {
-    if (empty($_POST['destination'])) {
-        $errors['destination'] = "A destination is required";
+    
+    if (!isset($_SESSION['userName'])) {
+      $errors['username'] = "You must be logged in to continue!";
+      header("location: survey.php");
+      exit();
     } else {
-      $destination = $_POST['destination'];
-      if (!preg_match("/^[a-zA-Z]+$/", $destination)) {
-          $errors['destination'] = "Only letters allowed";
-      }
+      $username = $_SESSION['userName'];
     }
-    if (empty($_POST['reason'])) {
-        $errors['reason'] = "A few reasons are required";
+
+    if (empty($_POST['date'])) {
+      # code...
+    }
+
+    if (empty($_POST['review'])) {
+      $errors['review'] = "You must enter a review!";
+      exit();
     } else {
-      $reason = $_POST['reason'];
-      if (!preg_match("/\b((?!=|\,|\.).)+(.)\b/", $reason)) {
-          $errors['reason'] = "Your comment must be some regular sentenses";
-      }
-    }
-    if (!isset($_SESSION['loggedin'])) {
-      if (empty($_POST['phone_number'])) {
-          $errors['phone_number'] = "Your phone number is required";
-      } else {
-        $phone_number = $_POST["phone_number"];
-        if (!preg_match("/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/", $phone_number)) {
-            $errors['phone_number'] = "Phone number must be numbers separated by forward slash";
-        }
-      }
-      if (empty($_POST['email'])) {
-          $errors['email'] = "Your email is required";
-      } else {
-        $email = $_POST['email'];
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $errors['email'] = "$email is not a valid email address";
-        }
+      $review = $_POST['review'];
+      if (!preg_match("/\b((?!=|\,|\.).)+(.)\b/", $review)) {
+          $errors['review'] = "Your review must be in regular sentences";
       }
     }
 
-
-
-
-    foreach ($options as $opt) {
-      if (empty($_POST[$opt])) {
-        $optErr[$opt] = "Please choose an option";
-      }
+    if (empty($_POST['img'])) {
+      $errors['image'] = "You must upload an image!";
+      exit();
+    } else {
+      $image = $_POST['img'];
     }
-    // $recommand = $_POST['recommand'];
-    $travel_agent = $_POST['travel_agent'];
-    $next_trip = $_POST['cost'];
-    $next_trip = $_POST['next_trip'];
 
     if (array_filter($errors)) {
       print_r($errors);
     } else {
+      //SQL GOES HERE
+      $sql = "SELECT username FROM reviews WHERE username =?";
+      $stmt = mysqli_stmt_init($conn);
+      
+      if(!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: survey.php?error=sqlerror");
+        exit();
+      } else {
+        mysqli_stmt_bind_param($stmt, "s", $username);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_store_result($stmt);
+        $resultCheck = mysqli_stmt_num_rows($stmt);
 
-      $_SESSION['email'] = $_POST['email'];
-      $_SESSION['phone_number'] = $_POST['phone_number'];
+        if ($resultCheck = 0) {
+          header("location: survey.php?error=userreviewtaken");
+        } else {
+          $sql = "INSERT INTO reviews (username, date, review, image) VALUES (?,?,?,?)";
+          $stmt = mysqli_stmt_init($connection);
+
+          if (!mysqli_stmt_prepare($stmt, $sql)) {
+            header("location: survey.php?error=sqlerror2");
+            exit();
+          } else {
+            mysqli_stmt_bind_param($stmt, "ssss", $username, $date, $review, $image);
+            mysqli_stmt_execute($stmt);
+                
+            header("location: index.php?postreview=success");
+            exit();
+          }
+        }
+      }
+
 
       header('Location: fin.php');
     }
@@ -68,7 +77,7 @@
 
 
  ?>
-
+<!--Markup also needs changing - NS -->
 <?php include './templates/header.php'; ?>
     <link rel="stylesheet" href="public/style/survey_style.css">
 <?php include './templates/nav.php' ?>
