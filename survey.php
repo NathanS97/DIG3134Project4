@@ -1,11 +1,12 @@
 <?php
   // turn into page to populate reviews table, use content Brooke created - NS
+  // atom git commit test
   session_start();
 
   $errors = ["username" => "", "date" => "", "review" => "", "image" => ""];
   if (isset($_POST['submit'])) {
     include 'config/db_conn.php';
-    
+
     if (!isset($_SESSION['userName'])) {
       $errors['username'] = "You must be logged in to continue!";
       header("location: survey.php");
@@ -37,7 +38,7 @@
       $targetDir = "public/img/".basename($image);
 
       if(move_uploaded_file($_FILES['image']['tmp_name'], $targetDir)) {
-        echo "<p>Image uploaded successfully</p>"; 
+        echo "<p>Image uploaded successfully</p>";
       } else {
         echo "<p>Failed to upload image</p>";
       }
@@ -49,7 +50,7 @@
       //SQL GOES HERE
       $sql = "SELECT username FROM reviews WHERE username =?";
       $stmt = mysqli_stmt_init($conn);
-      
+
       if(!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: survey.php?error=sqlerror");
         exit();
@@ -71,13 +72,13 @@
           } else {
             mysqli_stmt_bind_param($stmt, "ssss", $username, $date, $review, $image);
             mysqli_stmt_execute($stmt);
-                
+
             header("location: index.php?postreview=success");
             exit();
           }
         }
       }
-      
+
       header('Location: fin.php');
     }
   }
@@ -109,10 +110,10 @@
       </div>
       <div class="survey_question" required>
         <h2 class="survey_title">Please write your review here:</h2>
-        <textarea 
-          cols="40" 
-          rows="4" 
-          name="review" 
+        <textarea
+          cols="40"
+          rows="4"
+          name="review"
           placeholder="Write a review!"></textarea>
       </div>
       <div class="survey_question">
