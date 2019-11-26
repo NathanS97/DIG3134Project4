@@ -19,4 +19,47 @@
       }
     }
   }
+
+  include 'config/db_conn.php';
+
+  function delCom() {
+    if (isset($_GET['deleteComment'])) {
+      $commentID = $_POST['comment'];
+
+      $sql = "DELETE FROM comments WHERE comment=?";
+      $stmt = mysqli_stmt_init($conn);
+
+      if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: index.php?error=sqlerror");
+        exit();
+      } else {
+        mysqli_stmt_bind_param($stmt, "s", $commentID);
+        mysqli_stmt_execute($stmt);
+      }
+  
+      header("location: index.php");
+      exit();
+    }
+  }
+
+  function delAcc() {
+    if (isset($_GET['deleteAcc'])) {
+      $accountID = $_SESSION['userName'];
+
+      $sql = "DELETE FROM account WHERE username=?";
+      $stmt = mysqli_stmt_init($conn);
+
+      if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: index.php?error=sqlerror");
+        exit();
+      } else {
+        mysqli_stmt_bind_param($stmt, "s", $accountID);
+        mysqli_stmt_execute($stmt);
+      }
+      
+      clearSession();
+      header("location: index.php");
+      exit();
+    }
+  }
 ?>

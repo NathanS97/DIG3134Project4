@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2019 at 11:32 PM
+-- Generation Time: Nov 26, 2019 at 12:04 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `account` (
   `username` varchar(30) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `pword` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -43,7 +43,7 @@ CREATE TABLE `account` (
 CREATE TABLE `comments` (
   `username` varchar(25) NOT NULL,
   `comment` text NOT NULL,
-  `date` date NOT NULL
+  `dates` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -54,9 +54,9 @@ CREATE TABLE `comments` (
 
 CREATE TABLE `reviews` (
   `username` varchar(25) NOT NULL,
-  `date` date NOT NULL,
+  `dates` date NOT NULL,
   `text` text NOT NULL,
-  `image` varchar(100) NOT NULL
+  `img` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

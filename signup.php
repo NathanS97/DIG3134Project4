@@ -41,7 +41,7 @@
             $errors['username'] = "This username is already taken.";
             $errors['email'] = "This email is already taken.";
           } else {
-            $sql = "INSERT INTO account (username, email, password) VALUES (?, ?, ?)";
+            $sql = "INSERT INTO account (username, email, pword) VALUES (?, ?, ?)";
             if ($stmt = mysqli_prepare($conn, $sql)) {
               mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_email, $param_password);
               $param_username = $username;

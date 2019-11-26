@@ -27,7 +27,7 @@
       the food was out of this world. I really recommend for anyone to go to 
       Greece.
     </p>
-    <img src="/public/img/greece.jpg" alt="Santorini">
+    <img src="public/img/greece.jpg" alt="Santorini">
   </div>
   <div>
     <h1>Julia Murphy</h1>
@@ -37,7 +37,7 @@
       Rings. This trip has been on my bucket list since I first saw the movies.
       I officially want to move there and live in them forever.
     </p>
-    <img src="/public/img/newZealand.png" alt="Hobbit Hole">
+    <img src="public/img/newZealand.png" alt="Hobbit Hole">
   </div>
   <div>
     <h1>Nathan Snodgrass</h1>
@@ -47,7 +47,7 @@
       The food was the best I've ever had and just being submerged in the 
       culture was an experience I'll never forget.
     </p>
-    <img src="/public/img/japan.jpg" alt="Japanese Temple">
+    <img src="public/img/japan.jpg" alt="Japanese Temple">
   </div>
   <div>
     <h1>Hongda Zheng</h1>

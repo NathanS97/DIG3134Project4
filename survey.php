@@ -32,9 +32,15 @@
       $errors['image'] = "You must upload an image!";
       exit();
     } else {
-      $image = $_FILES['image']['name'];
+      $image = $_FILES['img']['name'];
 
       $targetDir = "public/img/".basename($image);
+
+      if(move_uploaded_file($_FILES['image']['tmp_name'], $targetDir)) {
+        echo "<p>Image uploaded successfully</p>"; 
+      } else {
+        echo "<p>Failed to upload image</p>";
+      }
     }
 
     if (array_filter($errors)) {
@@ -56,7 +62,7 @@
         if ($resultCheck = 0) {
           header("location: survey.php?error=userreviewtaken");
         } else {
-          $sql = "INSERT INTO reviews (username, date, review, image) VALUES (?,?,?,?)";
+          $sql = "INSERT INTO reviews (username, dates, review, img) VALUES (?,?,?,?)";
           $stmt = mysqli_stmt_init($connection);
 
           if (!mysqli_stmt_prepare($stmt, $sql)) {

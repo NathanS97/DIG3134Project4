@@ -3,6 +3,7 @@
   include './common/start.php';
   start();
   logout();
+  delAcc();
 
  ?>
 

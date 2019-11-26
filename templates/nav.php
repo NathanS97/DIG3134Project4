@@ -13,6 +13,7 @@
           <a href="#" class="user-profile"><i class="fas fa-user-circle"></i> <?php echo $_SESSION['userName'] ?></a>
           <div class="dropdown-content">
             <a href="index.php?signout=true">Sign out</a>
+            <a href="index.php?deleteAcc=true">Delete Account</a>
           </div>
       </div>
     <?php } else { ?>
