@@ -41,23 +41,21 @@
   }
 
   function delAcc() {
+    include 'config/db_conn.php';
+
     if (isset($_GET['deleteAcc'])) {
       $accountID = $_SESSION['userName'];
 
-      $sql = "DELETE FROM account WHERE username=?";
-      $stmt = mysqli_stmt_init($conn);
+      $conn = connectDB();
+      $sql = "DELETE FROM account WHERE username=$accountID";
 
-      if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: index.php?error=sqlerror");
+      if (mysqli_query($conn, $sql)) {
+        header("location: index.php?delete=success"); 
         exit();
       } else {
-        mysqli_stmt_bind_param($stmt, "s", $accountID);
-        mysqli_stmt_execute($stmt);
+        header("location: index.php?delete=failure");
+        exit();
       }
-      
-      clearSession();
-      header("location: index.php");
-      exit();
     }
   }
 ?>
