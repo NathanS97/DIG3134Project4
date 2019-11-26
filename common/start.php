@@ -20,8 +20,6 @@
     }
   }
 
-  include 'config/db_conn.php';
-
   function delCom() {
     if (isset($_GET['deleteComment'])) {
       $commentID = $_POST['comment'];
