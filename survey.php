@@ -5,7 +5,6 @@
 
   $errors = ["username" => "", "date" => "", "review" => "", "image" => ""];
   if (isset($_POST['submit'])) {
-    include 'config/db_conn.php';
 
     if (!isset($_SESSION['userName'])) {
       $errors['username'] = "You must be logged in to continue!";
@@ -16,7 +15,7 @@
     }
 
     if (empty($_POST['date'])) {
-      # code...
+      $errors['date'] = "You must enter a date!";
     }
 
     if (empty($_POST['review'])) {
@@ -29,18 +28,26 @@
       }
     }
 
-    if (empty($_POST['img'])) {
+    if (!isset($_FILES['image'])) {
       $errors['image'] = "You must upload an image!";
       exit();
     } else {
-      $image = $_FILES['img']['name'];
-
-      $targetDir = "public/img/".basename($image);
-
-      if(move_uploaded_file($_FILES['image']['tmp_name'], $targetDir)) {
-        echo "<p>Image uploaded successfully</p>";
+      $file_name = $_FILES['image']['name'];
+      $file_tmp = $_FILES['image']['tmp_name'];
+      $file_type = $_FILES['image']['type'];
+      $file_ext=strtolower(end(explode('.',$_FILES['image']['name'])));
+      
+      $extensions= array("jpeg","jpg","png");
+      
+      if(in_array($file_ext,$extensions)=== false){
+         $errors['image']="extension not allowed, please choose a JPEG or PNG file.";
+      }
+      
+      if(empty($errors)==true) {
+         move_uploaded_file($file_tmp,"public/img/".$file_name);
+         echo "Success";
       } else {
-        echo "<p>Failed to upload image</p>";
+         print_r($errors);
       }
     }
 
@@ -48,6 +55,10 @@
       print_r($errors);
     } else {
       //SQL GOES HERE
+      include 'config/db_conn.php';
+      $conn = connectDB();
+      
+
       $sql = "SELECT username FROM reviews WHERE username =?";
       $stmt = mysqli_stmt_init($conn);
 
@@ -64,7 +75,7 @@
           header("location: survey.php?error=userreviewtaken");
         } else {
           $sql = "INSERT INTO reviews (username, dates, review, img) VALUES (?,?,?,?)";
-          $stmt = mysqli_stmt_init($connection);
+          $stmt = mysqli_stmt_init($conn);
 
           if (!mysqli_stmt_prepare($stmt, $sql)) {
             header("location: survey.php?error=sqlerror2");
@@ -78,8 +89,6 @@
           }
         }
       }
-
-      header('Location: fin.php');
     }
   }
  ?>
@@ -89,8 +98,7 @@
     <link rel="stylesheet" href="public/style/survey_style.css">
 <?php include './templates/nav.php' ?>
   <div class="container">
-    <form class="survey" action="survey.php" method="post" enctype=multipart/form-data"">
-      <input type="hidden" name="size" value="1000000">
+    <form class="survey" action="survey.php" method="post" enctype="multipart/form-data">
       <h1 class="survey_pg_title">Vacation Travel Review</h1>
         <div class="error_output">
           <?php echo $errors['username']; ?>
@@ -118,7 +126,7 @@
       </div>
       <div class="survey_question">
         <h2 class="survey_title">Please upload an image of your trip:</h2>
-        <input type="file" name="img">
+        <input type="file" name="image">
       </div>
       <button type="submit" name="submit">Submit</button>
     </form>

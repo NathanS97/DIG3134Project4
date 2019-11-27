@@ -47,13 +47,18 @@
       $accountID = $_SESSION['userName'];
 
       $conn = connectDB();
-      $sql = "DELETE FROM account WHERE username=$accountID";
+      $sql = "DELETE FROM account WHERE username=?";
+      $stmt = mysqli_stmt_init($conn);
 
-      if (mysqli_query($conn, $sql)) {
-        header("location: index.php?delete=success"); 
+      if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: index.php?error=sqlerror");
         exit();
       } else {
-        header("location: index.php?delete=failure");
+        mysqli_stmt_bind_param($stmt, "s", $accountID);
+        mysqli_stmt_execute($stmt);
+
+        clearSession();
+        header("location: index.php?delete=success");
         exit();
       }
     }
