@@ -35,17 +35,17 @@
       $errors['image'] = "You must upload an image!";
       //exit();
     } else {
-      $file_name = $_FILES["img"]["name"];
-      $file_dir = "public/image/";
-      $image = $file_dir . basename($_FILES["img"]["name"]);
+      $file_name = basename($_FILES["img"]["name"]);
+      $file_dir = "public/img";
+      $image = "$file_dir/$file_name";
       $file_tmp = $_FILES['img']['tmp_name'];
       $file_type = strtolower(pathinfo($file_name,PATHINFO_EXTENSION));
       
       if($file_type != "jpg" && $file_type != "png" && $file_type != "jpeg" && $file_type != "gif" ) {
         $errors['image'] = "Only JPG, JPEG, PNG & GIF files are allowed.";
       } else {
-        if (move_uploaded_file($file_tmp, $file_name)) {
-          echo "Your review containing ".basename($file_name)." has been uploaded.";
+        if (move_uploaded_file($file_tmp, $image)) {
+          echo "Your review containing ".$file_name." has been uploaded.";
         } else {
           echo "Sorry, there was an error uploading your review.";
         }
