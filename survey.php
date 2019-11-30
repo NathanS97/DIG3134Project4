@@ -4,23 +4,26 @@
   session_start();
 
   $errors = ["username" => "", "date" => "", "review" => "", "image" => ""];
-  if (isset($_POST['submit'])) {
+
+  if(isset($_POST['submit'])) {
 
     if (!isset($_SESSION['userName'])) {
       $errors['username'] = "You must be logged in to continue!";
-      header("location: survey.php");
-      exit();
+      //header("location: survey.php?error=notlogged");
+      //exit();
     } else {
       $username = $_SESSION['userName'];
     }
 
     if (empty($_POST['date'])) {
       $errors['date'] = "You must enter a date!";
+    } else {
+      $date = $_POST['date'];
     }
 
     if (empty($_POST['review'])) {
       $errors['review'] = "You must enter a review!";
-      exit();
+      //exit();
     } else {
       $review = $_POST['review'];
       if (!preg_match("/\b((?!=|\,|\.).)+(.)\b/", $review)) {
@@ -28,26 +31,24 @@
       }
     }
 
-    if (!isset($_FILES['image'])) {
+    if (!isset($_FILES['img'])) {
       $errors['image'] = "You must upload an image!";
-      exit();
+      //exit();
     } else {
-      $file_name = $_FILES['image']['name'];
-      $file_tmp = $_FILES['image']['tmp_name'];
-      $file_type = $_FILES['image']['type'];
-      $file_ext=strtolower(end(explode('.',$_FILES['image']['name'])));
+      $file_name = $_FILES["img"]["name"];
+      $file_dir = "public/image/";
+      $image = $file_dir . basename($_FILES["img"]["name"]);
+      $file_tmp = $_FILES['img']['tmp_name'];
+      $file_type = strtolower(pathinfo($file_name,PATHINFO_EXTENSION));
       
-      $extensions= array("jpeg","jpg","png");
-      
-      if(in_array($file_ext,$extensions)=== false){
-         $errors['image']="extension not allowed, please choose a JPEG or PNG file.";
-      }
-      
-      if(empty($errors)==true) {
-         move_uploaded_file($file_tmp,"public/img/".$file_name);
-         echo "Success";
+      if($file_type != "jpg" && $file_type != "png" && $file_type != "jpeg" && $file_type != "gif" ) {
+        $errors['image'] = "Only JPG, JPEG, PNG & GIF files are allowed.";
       } else {
-         print_r($errors);
+        if (move_uploaded_file($file_tmp, $file_name)) {
+          echo "Your review containing ".basename($file_name)." has been uploaded.";
+        } else {
+          echo "Sorry, there was an error uploading your review.";
+        }
       }
     }
 
@@ -63,7 +64,7 @@
       $stmt = mysqli_stmt_init($conn);
 
       if(!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: survey.php?error=sqlerror");
+        //header("location: survey.php?error=sqlerror");
         exit();
       } else {
         mysqli_stmt_bind_param($stmt, "s", $username);
@@ -71,22 +72,20 @@
         mysqli_stmt_store_result($stmt);
         $resultCheck = mysqli_stmt_num_rows($stmt);
 
-        if ($resultCheck = 0) {
-          header("location: survey.php?error=userreviewtaken");
+        $sql = "INSERT INTO reviews (username, dates, review, img) VALUES (?,?,?,?)";
+        $stmt = mysqli_stmt_init($conn);
+
+        if (!mysqli_stmt_prepare($stmt, $sql)) {
+          //header("location: survey.php?error=sqlerror2");
+          //exit();
         } else {
-          $sql = "INSERT INTO reviews (username, dates, review, img) VALUES (?,?,?,?)";
-          $stmt = mysqli_stmt_init($conn);
+          mysqli_stmt_bind_param($stmt, "ssss", $username, $date, $review, $image);
+          mysqli_stmt_execute($stmt);
 
-          if (!mysqli_stmt_prepare($stmt, $sql)) {
-            header("location: survey.php?error=sqlerror2");
-            exit();
-          } else {
-            mysqli_stmt_bind_param($stmt, "ssss", $username, $date, $review, $image);
-            mysqli_stmt_execute($stmt);
+          // CHECK mysqli_stmt_error($stmt);
 
-            header("location: index.php?postreview=success");
-            exit();
-          }
+          //header("location: index.php?postreview=success");
+          //exit();
         }
       }
     }
@@ -126,7 +125,7 @@
       </div>
       <div class="survey_question">
         <h2 class="survey_title">Please upload an image of your trip:</h2>
-        <input type="file" name="image">
+        <input type="file" name="img">
       </div>
       <button type="submit" name="submit">Submit</button>
     </form>
