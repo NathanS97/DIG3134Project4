@@ -18,7 +18,7 @@
             <h1 class="hero_text">Find A Place <br> You Love</h1>
           </div>
           <p class="hero_content">If you’re a travel planner or researcher, get the competitive edge by learning about people’s vacation preferences.</p>
-          <a href="survey.php" class="btn primary"><i class="fas fa-arrow-alt-circle-right"></i>Take a Survey</a>
+          <a href="survey.php" class="btn primary"><i class="fas fa-arrow-alt-circle-right"></i>Write a Review</a>
         </div>
       </section>
       <section class="sidebar">
