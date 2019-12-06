@@ -37,7 +37,7 @@
     } else {
       $file_name = basename($_FILES["img"]["name"]);
       $file_dir = "public/img";
-      $image = "$file_dir/$file_name";
+      $image = ".$file_dir./.$file_name.";
       $file_tmp = $_FILES['img']['tmp_name'];
       $file_type = strtolower(pathinfo($file_name,PATHINFO_EXTENSION));
       
