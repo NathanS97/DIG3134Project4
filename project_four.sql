@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2019 at 02:26 PM
+-- Generation Time: Dec 07, 2019 at 07:31 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -42,7 +42,8 @@ INSERT INTO `account` (`username`, `email`, `pword`) VALUES
 ('Brooke_Eden', 'brookee.eden@gmail.com', '$2y$10$Swa2StpOcvIwWykbajIfM.WwL50QRVsYUsl2l4EqYVCGEu0Pu4p1e'),
 ('Honhd567', 'DerrickZheng00@gmail.com', '$2y$10$bWr/fPPjwB0an5SvGfkHLe8EiK.BkLFD1ReVBF9e1ZiwM/yCjKSEq'),
 ('Jmmurphy123', 'JMMurphy137@gmail.com', '$2y$10$smQoiE6dBvwtVT4s5l0/Pej1FKjaWP7aLAzjHguIjQGZYJrLz93n2'),
-('N68grass', 'n.snodgrass97@gmail.com', '$2y$10$9ZPM.JE93w/jwkjiUyaV1.X5aDahHyz04VHz9bEb6vwc3Mljlglky');
+('N68grass', 'n.snodgrass97@gmail.com', '$2y$10$9ZPM.JE93w/jwkjiUyaV1.X5aDahHyz04VHz9bEb6vwc3Mljlglky'),
+('TestNS', 'testNS@gmail.com', '$2y$10$b/q87itu9kuJ/rsQMZswxeCmrWC//fgEjqmsvrTBPByvdPx5dSrBu');
 
 -- --------------------------------------------------------
 
@@ -51,10 +52,19 @@ INSERT INTO `account` (`username`, `email`, `pword`) VALUES
 --
 
 CREATE TABLE `comments` (
+  `cid` int(11) NOT NULL,
   `username` varchar(25) NOT NULL,
-  `comment` text NOT NULL,
-  `dates` date NOT NULL
+  `dates` datetime NOT NULL,
+  `comment` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`cid`, `username`, `dates`, `comment`) VALUES
+(11, 'Anonymous', '2019-12-06 15:41:22', 'I am this table\'s Prometheus\r\n'),
+(17, 'N68grass', '2019-12-06 16:41:19', 'First :D');
 
 -- --------------------------------------------------------
 
@@ -74,8 +84,7 @@ CREATE TABLE `reviews` (
 --
 
 INSERT INTO `reviews` (`username`, `dates`, `review`, `img`) VALUES
-('N68grass', '01-30-2015', 'If you havent been to Japan, well pack your bags because you NEED to go. The food was the best Ive ever had and just being submerged in the culture was an experience Ill never forget.', 'public/img/japan.jpg'),
-('TestNS', '04-20-1969', 'pls work', 'public/img/1thonk.png');
+('N68grass', '01-30-2015', 'If you havent been to Japan, well pack your bags because you NEED to go. The food was the best Ive ever had and just being submerged in the culture was an experience Ill never forget.', 'public/img/japan.jpg');
 
 --
 -- Indexes for dumped tables
@@ -91,13 +100,23 @@ ALTER TABLE `account`
 -- Indexes for table `comments`
 --
 ALTER TABLE `comments`
-  ADD PRIMARY KEY (`username`);
+  ADD PRIMARY KEY (`cid`);
 
 --
 -- Indexes for table `reviews`
 --
 ALTER TABLE `reviews`
   ADD PRIMARY KEY (`username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
