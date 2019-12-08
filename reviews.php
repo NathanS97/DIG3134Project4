@@ -9,9 +9,10 @@
 <?php include './templates/header.php'; ?>  
   <link rel="stylesheet" href="public/style/main.css">
   <link rel="stylesheet" href="public/style/mediaquery.css">
+  <link rel="stylesheet" href="public/style/review.css">
 <?php include './templates/nav.php'; ?>
   <!--Reviews page with comments, both from database, needs styling from Hongda - NS-->
-  <div class="">
+  <div class="container review-box">
     <!--Reviews from database-->
     <?php
       $conn = connectDB();
@@ -25,36 +26,34 @@
         <div class="">
           <h3 class=""><?php echo $row['username']?></h3>
           <p class=""><?php echo $row['dates']?></p>
-          <p class=""><?php echo $row['review']?>></p>
+          <p class=""><?php echo $row['review']?></p>
           <img src="<?php echo $row['img']?>" alt="database content">
         </div>
       <?php
       }
       ?>
-
-    <!--Comment form, gets comments and inserts to database - NS-->
-    <div class=""> 
-      <?php
-      if (isset($_SESSION['loggedin'])) {
-        echo "<form action='".setCom()."' method='post'>
-          <input type='hidden' name='username' value='".$_SESSION['userName']."'>
-          <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
-          <textarea name='comment' cols='75' rows='3'></textarea><br>
-          <button type='submit' name='comSubmit'>Post comment</button>
-        </form>";
-      } else {
-        echo "<p>You must be logged in to comment!</p>";
-      }
-      /*echo "<form action='".setCom()."' method='post'>
-        <input type='hidden' name='username' value='".$_SESSION['userName']."'>
-        <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
-        <textarea name='comment' cols='75' rows='3'></textarea><br>
-        <button type='submit' name='comSubmit'>Post comment</button>
-      </form>";*/
-
-      // displays comments from data table
-      getCom();
-      ?>
-    </div>
   </div>
+
+  <!--Comment form, gets comments and inserts to database - NS--> 
+  <?php
+  if (isset($_SESSION['loggedin'])) {
+    echo "<form action='".setCom()."' method='post'>
+      <input type='hidden' name='username' value='".$_SESSION['userName']."'>
+      <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
+      <textarea name='comment' cols='75' rows='3'></textarea><br>
+      <button type='submit' name='comSubmit'>Post comment</button>
+    </form>";
+  } else {
+    echo "<p>You must be logged in to comment!</p>";
+  }
+  /*echo "<form action='".setCom()."' method='post'>
+    <input type='hidden' name='username' value='".$_SESSION['userName']."'>
+    <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
+    <textarea name='comment' cols='75' rows='3'></textarea><br>
+    <button type='submit' name='comSubmit'>Post comment</button>
+  </form>";*/
+
+  // displays comments from data table
+  getCom();
+  ?>
 <?php include './templates/footer.php' ?>

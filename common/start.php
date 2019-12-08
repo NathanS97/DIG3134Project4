@@ -32,8 +32,6 @@
       $conn = connectDB();
       $sql = "INSERT INTO comments (username, dates, comment) VALUES ('$username','$date','$comment')";
       $result = $conn->query($sql);
-      exit();
-
     }
   }
 
@@ -49,10 +47,10 @@
       echo $row['username']."<br>";
       echo $row['dates']."<br>";
       echo nl2br($row['comment']);
+      echo "</p>";
       //end of comment, with edit and delelte buttons - NS
       if ($row['username'] == $_SESSION['userName']) {
-        echo "</p>
-        <form class='edit-form' action='editComment.php' method='POST'>
+        echo "<form class='edit-form' action='editComment.php' method='POST'>
           <input type='hidden' name='cid' value='".$row['cid']."'>
           <input type='hidden' name='username' value='".$row['username']."'>
           <input type='hidden' name='date' value='".$row['dates']."'>
@@ -62,11 +60,11 @@
         <form class='delete-form' action='".deleteCom()."' method='POST'>
           <input type='hidden' name='cid' value='".$row['cid']."'>
           <button name='comDelete'>Delete</button>
-        </form>
-      </div>";
+        </form>";
       } else {
         echo "";
       }
+      echo "</div>";
       /*echo "</p>
         <form class='edit-form' action='editComment.php' method='POST'>
           <input type='hidden' name='cid' value='".$row['cid']."'>

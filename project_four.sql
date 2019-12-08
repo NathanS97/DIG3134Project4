@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2019 at 07:31 PM
+-- Generation Time: Dec 08, 2019 at 11:13 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -63,8 +63,10 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`cid`, `username`, `dates`, `comment`) VALUES
-(11, 'Anonymous', '2019-12-06 15:41:22', 'I am this table\'s Prometheus\r\n'),
-(17, 'N68grass', '2019-12-06 16:41:19', 'First :D');
+(17, 'N68grass', '2019-12-06 16:41:19', 'First :D'),
+(25, 'Brooke_Eden', '2019-12-08 16:45:33', 'Wow, super pretty! Love all the colors on the trees. '),
+(27, 'Jmmurphy123', '2019-12-08 16:52:09', 'That view is so gorgeous, Id love to be there right now.'),
+(29, 'Honhd567', '2019-12-08 17:00:17', 'I was planning to visit at some point, I am a big fan of Japanese temple architecture.');
 
 -- --------------------------------------------------------
 
@@ -106,7 +108,7 @@ ALTER TABLE `comments`
 -- Indexes for table `reviews`
 --
 ALTER TABLE `reviews`
-  ADD PRIMARY KEY (`username`);
+  ADD PRIMARY KEY (`review`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -116,7 +118,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

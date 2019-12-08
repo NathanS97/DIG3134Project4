@@ -1,0 +1,106 @@
+body {
+  background-color: #ededed;
+}
+
+p {
+  max-width: 500px;
+}
+
+header a:hover {
+  text-decoration: none;
+  color: #000;
+}
+
+.review-box {
+  padding-top: 100px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  display: grid;
+  grid-auto-rows: auto 20vh;
+}
+
+/* Unused, caused issues
+.row {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+*/
+
+.comment-section {
+  padding: 10px;
+}
+
+form {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.edit-form {
+  position: absolute;
+  top: 0px;
+  right: 60px;
+}
+
+.edit-form button {
+  /*width: 40px;
+  height: 20px;*/
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  color: #282828;
+  background-color: #fff;
+  opacity: 0.7;
+}
+
+.edit-form button:hover {
+  opacity: 1;
+}
+
+.delete-form {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.delete-form button {
+  /*width: 40px;
+  height: 20px;*/
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  color: #282828;
+  background-color: #fff;
+  opacity: 0.7;
+}
+
+.delete-form button:hover {
+  opacity: 1;
+}
+
+textarea {
+  width: auto;
+  max-width: 530px;
+  resize: none;
+  background-color: #fff;
+}
+
+.comment-box {
+  border-radius: 4px;
+  width: auto;
+  max-width: 500px;
+  padding: 20px;
+  margin: 8px;
+  margin-left: 20px;
+  background-color: #fff;
+  position: relative;
+}
+
+.comment-box p {
+  font-size: 16px;
+  line-height: 16px;
+  color: #282828;
+  font-weight: 100;
+}
