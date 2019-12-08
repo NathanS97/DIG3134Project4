@@ -22,10 +22,10 @@
       while ($row = $result->fetch_assoc()) 
       {
       ?>
-        <div>
-          <h3><?php echo $row['username']?></h3>
-          <p><?php echo $row['dates']?></p>
-          <p><?php echo $row['review']?>></p>
+        <div class="">
+          <h3 class=""><?php echo $row['username']?></h3>
+          <p class=""><?php echo $row['dates']?></p>
+          <p class=""><?php echo $row['review']?>></p>
           <img src="<?php echo $row['img']?>" alt="database content">
         </div>
       <?php
@@ -33,7 +33,7 @@
       ?>
 
     <!--Comment form, gets comments and inserts to database - NS-->
-    <div>
+    <div class=""> 
       <?php
       if (isset($_SESSION['loggedin'])) {
         echo "<form action='".setCom()."' method='post'>
