@@ -7,16 +7,12 @@
     private $title;
     private $image;
     private $added_at;
-    private $reviewId;
-    private $userId;
-    function __construct($title = null, $image = null, $added_at = null, $reviewId = null, $userId = null)
+    function __construct($title = null, $image = null, $added_at = null)
     {
-      if ($title && $image && $added_at && $reviewId && $userId) {
+      if ($title && $image && $added_at) {
         $this->title = $title;
         $this->image = $image;
         $this->added_at = $added_at;
-        $this->reviewId = $reviewId;
-        $this->userId = $userId;
       }
     }
     public function getTitle() {
@@ -28,7 +24,7 @@
     }
 
     public function getReview() {
-      return "<a href='review.php?reviewId=". $this->reviewId ."' class='btn btn-primary'>More info</a>";
+      return "<a href='review.php?reviewId=#' class='btn btn-primary'>More info</a>";
     }
 
     public function renderCard() {
@@ -55,6 +51,6 @@
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
    </head>
    <body>
-     <?php echo $reviewOne->renderCard(); ?>
+     <?php //echo $reviewOne->renderCard(); ?>
    </body>
  </html>
