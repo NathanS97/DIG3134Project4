@@ -52,6 +52,7 @@
         <button type='submit' name='comSubmit'>Post comment</button>
       </form>";*/
 
+      // displays comments from data table
       getCom();
       ?>
     </div>
