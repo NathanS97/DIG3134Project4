@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2019 at 11:13 PM
+-- Generation Time: Dec 09, 2019 at 12:19 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -65,7 +65,7 @@ CREATE TABLE `comments` (
 INSERT INTO `comments` (`cid`, `username`, `dates`, `comment`) VALUES
 (17, 'N68grass', '2019-12-06 16:41:19', 'First :D'),
 (25, 'Brooke_Eden', '2019-12-08 16:45:33', 'Wow, super pretty! Love all the colors on the trees. '),
-(27, 'Jmmurphy123', '2019-12-08 16:52:09', 'That view is so gorgeous, Id love to be there right now.'),
+(27, 'Jmmurphy123', '2019-12-08 16:52:09', 'That sounded like an amazing trip, I cant wait to visit Japan in the future'),
 (29, 'Honhd567', '2019-12-08 17:00:17', 'I was planning to visit at some point, I am a big fan of Japanese temple architecture.');
 
 -- --------------------------------------------------------
