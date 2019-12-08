@@ -1,0 +1,30 @@
+header a:hover {
+  text-decoration: none;
+  color: #000;
+}
+
+.review-box {
+  padding-top: 7em;
+  display: grid;
+  grid-auto-rows: auto 20vh;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.comment-section {
+  padding: 1em;
+}
+
+.comment-box {
+  border: 1px solid #e1e1e1;
+  width: calc(100% - 2em);
+  height: 250px;
+  outline: none;
+  padding: 0.5em;
+  margin-bottom: 1em;
+  font-size: 0.9rem;
+}
